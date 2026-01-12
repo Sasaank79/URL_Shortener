@@ -1,0 +1,32 @@
+{
+  "name": "URL Shortener",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [8080, 5433, 6379],
+  "portsAttributes": {
+    "8080": {
+      "label": "URL Shortener API",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "docker-compose up -d && ./mvnw compile",
+  "postStartCommand": "./mvnw spring-boot:run",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "java.compile.nullAnalysis.mode": "automatic"
+      }
+    }
+  }
+}

@@ -7,6 +7,8 @@ A production-grade URL shortening service (bit.ly clone) built with **Java Sprin
 ![Redis](https://img.shields.io/badge/Redis-7-red)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Sasaank79/URL_Shortener?quickstart=1)
+
 ## ✨ Features
 
 - **URL Shortening**: Convert long URLs to short, shareable links
