@@ -1,13 +1,19 @@
-# 🔗 High-Performance URL Shortener
+# High-Performance URL Shortener
 
-A production-grade URL shortening service (bit.ly clone) built with **Java Spring Boot**, **Redis** for caching, and **PostgreSQL** for persistent storage.
+**URL Shortener | Java, Spring Boot, Redis, PostgreSQL, Docker**
+
+* Designed and implemented a scalable URL redirection backend using Spring Boot with a cache-aside strategy via Redis, achieving sub-millisecond lookup latency for hot URLs while mitigating database read spikes.
+* Engineered a Base62 encoding service capable of generating 56+ billion collision-free short URLs (6-character depth), with architecture supporting vertical and horizontal growth.
+* Containerized decoupled application, cache, and database services using Docker to ensure reproducible deployments and improved system reliability through JUnit-based test coverage.
 
 ![Java](https://img.shields.io/badge/Java-21-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)
 ![Redis](https://img.shields.io/badge/Redis-7-red)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
 
-## ✨ Features
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Sasaank79/URL_Shortener?quickstart=1)
+
+## Features
 
 - **URL Shortening**: Convert long URLs to short, shareable links
 - **Custom Aliases**: Create memorable custom short codes
@@ -16,7 +22,7 @@ A production-grade URL shortening service (bit.ly clone) built with **Java Sprin
 - **High Performance**: Sub-millisecond lookups with Redis caching
 - **RESTful API**: Clean, documented REST endpoints
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌────────────────┐
@@ -41,7 +47,7 @@ A production-grade URL shortening service (bit.ly clone) built with **Java Sprin
 | **Database** | PostgreSQL | ACID compliance, reliable storage |
 | **Redirect** | 302 Found | Allows accurate click tracking |
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -93,7 +99,7 @@ curl -L http://localhost:8080/1
 curl http://localhost:8080/api/v1/urls/1/stats
 ```
 
-## 📚 API Reference
+## API Reference
 
 ### Create Short URL
 
@@ -146,7 +152,7 @@ GET /api/v1/urls/{shortCode}/stats
 }
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -156,7 +162,7 @@ GET /api/v1/urls/{shortCode}/stats
 ./mvnw test jacoco:report
 ```
 
-## 🔧 Configuration
+## Configuration
 
 Key configuration in `application.yml`:
 
@@ -176,7 +182,7 @@ app:
   base-url: http://localhost:8080
 ```
 
-## 💡 Interview Talking Points
+## Interview Talking Points
 
 > **"Designed a URL shortener using Base62 encoding and Redis caching to handle high-read traffic with sub-millisecond latency."**
 
@@ -202,7 +208,7 @@ app:
    - Separation of concerns
    - Testable design
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/main/java/com/urlshortener/
@@ -214,7 +220,7 @@ src/main/java/com/urlshortener/
 ├── dto/
 │   ├── ShortenRequest.java        # Request DTO
 │   ├── ShortenResponse.java       # Response DTO
-│   └── UrlStatsResponse.java      # Stats DTO
+│   ├── UrlStatsResponse.java      # Stats DTO
 ├── entity/
 │   └── Url.java                   # JPA entity
 ├── exception/
@@ -227,9 +233,9 @@ src/main/java/com/urlshortener/
 │   ├── UrlService.java            # Service interface
 │   └── UrlServiceImpl.java        # Service implementation
 └── util/
-    └── Base62Encoder.java         # Encoding utility
+│   └── Base62Encoder.java         # Encoding utility
 ```
 
-## 📄 License
+## License
 
 MIT License - feel free to use this for learning and interviews!
