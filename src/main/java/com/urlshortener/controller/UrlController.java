@@ -103,4 +103,22 @@ public class UrlController {
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("OK");
     }
+
+    /**
+     * Welcome page - shows API documentation.
+     */
+    @GetMapping("/")
+    public ResponseEntity<java.util.Map<String, Object>> welcome() {
+        return ResponseEntity.ok(java.util.Map.of(
+                "service", "URL Shortener API",
+                "version", "1.0.0",
+                "endpoints", java.util.Map.of(
+                        "shorten", "POST /api/v1/shorten",
+                        "redirect", "GET /{shortCode}",
+                        "stats", "GET /api/v1/urls/{shortCode}/stats",
+                        "health", "GET /health"),
+                "example", java.util.Map.of(
+                        "request", "POST /api/v1/shorten with {\"originalUrl\": \"https://example.com\"}",
+                        "response", "{\"shortCode\": \"abc123\", \"shortUrl\": \"http://host/abc123\"}")));
+    }
 }
