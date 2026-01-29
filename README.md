@@ -10,6 +10,7 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)
 ![Redis](https://img.shields.io/badge/Redis-7-red)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
+[![Java CI with Maven](https://github.com/Sasaank79/URL_Shortener/actions/workflows/maven.yml/badge.svg)](https://github.com/Sasaank79/URL_Shortener/actions/workflows/maven.yml)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Sasaank79/URL_Shortener?quickstart=1)
 
