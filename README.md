@@ -2,9 +2,9 @@
 
 **URL Shortener | Java, Spring Boot, Redis, PostgreSQL, Docker**
 
-* Designed and implemented a scalable URL redirection backend using Spring Boot with a cache-aside strategy via Redis, achieving sub-millisecond lookup latency for hot URLs while mitigating database read spikes.
-* Engineered a Base62 encoding service capable of generating 56+ billion collision-free short URLs (6-character depth), with architecture supporting vertical and horizontal growth.
-* Containerized decoupled application, cache, and database services using Docker to ensure reproducible deployments and improved system reliability through JUnit-based test coverage.
+* Architected a scalable URL shortening service using Spring Boot 3.2, PostgreSQL, and Redis, integrating a GitHub Actions CI pipeline to automate build verification and enforce unit test execution prior to deployment.
+* Designed a redirection layer using a cache-aside Redis strategy (24h TTL) to mitigate database read spikes and deliver sub-millisecond cache lookup latency via Redis for frequently accessed URLs.
+* Developed a Base62 encoding mechanism supporting 56+ billion unique short URLs (6-character depth), validated through JUnit 5 and Mockito test suites covering controller, service, and utility layers to ensure logical correctness and edge-case handling.
 
 ![Java](https://img.shields.io/badge/Java-21-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)
@@ -20,8 +20,18 @@
 - **Custom Aliases**: Create memorable custom short codes
 - **Click Tracking**: Real-time click count statistics
 - **URL Expiration**: Optional expiration for temporary links
-- **High Performance**: Sub-millisecond lookups with Redis caching
-- **RESTful API**: Clean, documented REST endpoints
+- **Performance**: Sub-millisecond cache lookups via Redis
+- **RESTful API**: Clean, documented REST endpoints (Swagger UI available locally)
+
+## API Documentation
+
+The application provides interactive API documentation via Swagger UI.
+
+![Swagger Overview](screenshots/swagger-overview.png)
+*Overview of available endpoints*
+
+![Swagger Endpoint](screenshots/swagger-endpoint.png)
+*Testing an endpoint directly from the browser*
 
 ## Architecture
 
@@ -185,7 +195,7 @@ app:
 
 ## Interview Talking Points
 
-> **"Designed a URL shortener using Base62 encoding and Redis caching to handle high-read traffic with sub-millisecond latency."**
+> **"Designed a URL shortener using Base62 encoding and Redis caching to support high read concurrency using Redis caching for sub-millisecond lookups."**
 
 ### System Design Highlights
 
@@ -195,14 +205,14 @@ app:
    - Characters: `[0-9a-zA-Z]`
 
 2. **Redis Caching**
-   - Read-through pattern
+   - Cache-aside pattern
    - 24-hour TTL for hot URLs
    - Sub-millisecond lookups
 
 3. **Atomic Counters**
-   - Database-level atomic increment
+   - Uses database-level atomic increment operations
    - Thread-safe click tracking
-   - No race conditions
+   - Prevents lost updates under concurrent requests
 
 4. **Clean Architecture**
    - Controller → Service → Repository
